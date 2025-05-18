@@ -29,7 +29,9 @@ return {
     local builtin = require "telescope.builtin"
     local map = vim.keymap.set
 
-    map("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
+    map("n", "<leader>pf", function()
+      builtin.find_files { previewer = false }
+    end, { desc = "Find files" })
     map("n", "<C-p>", builtin.git_files, { desc = "Find git files" })
 
     map("n", "<leader>ps", function()

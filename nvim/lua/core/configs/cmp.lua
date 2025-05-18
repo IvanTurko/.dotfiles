@@ -1,7 +1,13 @@
 local cmp = require "cmp"
 
 local options = {
-  completion = { completeopt = "menu,menuone" },
+  -- completion = { completeopt = "menu,menuone" },
+  completion = {
+    scrollbar = false,
+    side_padding = 1,
+    winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:CmpBorder",
+    border = "single",
+  },
 
   snippet = {
     expand = function(args)
@@ -55,8 +61,9 @@ local options = {
   },
 }
 
-local success, result = pcall(function()
-  return vim.tbl_deep_extend("force", require("nvchad.cmp"), options)
-end)
+-- local success, result = pcall(function()
+--   return vim.tbl_deep_extend("force", require("nvchad.cmp"), options)
+-- end)
 
-return success and result or options
+-- return success and result or options
+return options
