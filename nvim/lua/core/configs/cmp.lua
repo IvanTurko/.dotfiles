@@ -61,9 +61,4 @@ local options = {
   },
 }
 
--- local success, result = pcall(function()
---   return vim.tbl_deep_extend("force", require("nvchad.cmp"), options)
--- end)
-
--- return success and result or options
 return options

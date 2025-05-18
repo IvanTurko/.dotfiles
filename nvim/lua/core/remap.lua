@@ -49,7 +49,3 @@ map("n", "<C-k>", "<cmd>cnext<CR>zz")
 map("n", "<C-j>", "<cmd>cprev<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
 map("n", "<leader>j", "<cmd>lprev<CR>zz")
-
-map("n", "<leader>th", function()
-  require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })

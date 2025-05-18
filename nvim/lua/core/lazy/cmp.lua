@@ -1,7 +1,3 @@
-pcall(function()
-  dofile(vim.g.base46_cache .. "cmp")
-end)
-
 return {
   {
     "hrsh7th/nvim-cmp",
