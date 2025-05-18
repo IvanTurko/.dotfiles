@@ -49,3 +49,14 @@ map("n", "<C-k>", "<cmd>cnext<CR>zz")
 map("n", "<C-j>", "<cmd>cprev<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
 map("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+map("n", "<leader>th", function()
+  require("plenary.reload").reload_module "base46"
+  require("base46").load_all_highlights()
+end, { desc = "reload theme" })
+
+map("n", "<leader>tn", function()
+  require("base46").toggle_theme()
+  require("plenary.reload").reload_module "base46"
+  require("base46").load_all_highlights()
+end, { desc = "toggle theme" })

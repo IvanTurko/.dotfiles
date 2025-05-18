@@ -64,3 +64,6 @@ g.loaded_ruby_provider = 0
 -- Mason Binaries
 local is_windows = vim.fn.has "win32" ~= 0
 vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+
+-- Base46 cache
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"

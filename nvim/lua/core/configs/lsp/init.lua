@@ -31,7 +31,7 @@ config("lua_ls", {
 })
 
 config("gopls", {
-  on_init = nil,
+--  on_init = nil,
   settings = {
     gopls = {
       gofumpt = true,
