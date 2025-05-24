@@ -9,7 +9,7 @@ opt.guicursor = ""
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 opt.fillchars = { eob = " " }
-opt.splitbelow = true
+opt.splitbelow = false
 opt.splitright = true
 
 -- disable nvim intro

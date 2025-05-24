@@ -1,5 +1,5 @@
 return {
-  base46 = require "core.configs.base46",
+  base46 = require "core.configs.bs46",
   ui = {
     cmp = {
       icons_left = false, -- only for non-atom styles!
