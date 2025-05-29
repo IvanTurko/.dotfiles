@@ -60,9 +60,12 @@ return {
     },
   },
   config = function()
+    local neotest_golang_opts = {
+      go_test_args = { "-v", "-race", "-count=1", "-timeout=20s" },
+    }
     require("neotest").setup {
       adapters = {
-        require "neotest-golang",
+        require "neotest-golang"(neotest_golang_opts),
       },
     }
   end,
