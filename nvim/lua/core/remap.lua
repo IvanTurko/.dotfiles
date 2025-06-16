@@ -60,3 +60,5 @@ map("n", "<leader>tn", function()
   require("plenary.reload").reload_module "base46"
   require("base46").load_all_highlights()
 end, { desc = "toggle theme" })
+
+map("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
