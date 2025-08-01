@@ -4,6 +4,7 @@ echo "📦 Installing symlinks..."
 
 # Array in the format "src:dst"
 links=(
+  "ghostty:$HOME/.config/ghostty"
   "nvim:$HOME/.config/nvim"
 )
 
