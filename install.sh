@@ -2,6 +2,8 @@
 
 echo "Installing symlinks..."
 
+DOTFILES_DIR="$HOME/.dotfiles"
+
 links=(
   "ghostty:$HOME/.config/ghostty"
   "tmux:$HOME/.config/tmux"
@@ -11,8 +13,8 @@ links=(
 for entry in "${links[@]}"; do
   IFS=":" read -r src dst <<< "$entry"
   mkdir -p "$(dirname "$dst")"
-  ln -sfn "$PWD/$src" "$dst"
-  echo "$dst → $src"
+  ln -sfn "$DOTFILES_DIR/$src" "$dst"
+  echo "$dst → $DOTFILES_DIR/$src"
 done
 
 TPM_PATH="$HOME/.tmux/plugins/tpm"
