@@ -18,6 +18,7 @@ return {
           "vim",
           "vimdoc",
           "bash",
+          "python",
           "go",
         },
 
