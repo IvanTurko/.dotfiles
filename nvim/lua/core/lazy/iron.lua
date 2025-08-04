@@ -125,7 +125,10 @@ return {
       end
 
       core.focus_on(ft)
-      vim.cmd "startinsert"
+
+      vim.defer_fn(function()
+        vim.cmd "startinsert"
+      end, 50)
     end, { desc = "Iron: Focus REPL and enter insert mode" })
 
     vim.keymap.set("t", "<C-x>", function()
