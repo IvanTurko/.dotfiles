@@ -93,60 +93,44 @@ return {
       ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
     }
 
-    -- Find active terminal buffer
-    local function find_repl_buf()
-      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.bo[buf].buftype == "terminal" and vim.api.nvim_buf_is_loaded(buf) then
-          return buf
-        end
-      end
-      return nil
-    end
-
-    local function clean()
-      local repl_buf = find_repl_buf()
-      if not repl_buf then
-        vim.notify("No active REPL terminal buffer found", vim.log.levels.WARN)
-        return
-      end
-
-      vim.api.nvim_buf_call(repl_buf, function()
-        vim.opt_local.laststatus = 0
-        vim.opt_local.winbar = nil
-        vim.bo.buflisted = false
-      end)
-
-      vim.defer_fn(function()
-        local chan = vim.b[repl_buf].terminal_job_id
-        if chan then
-          vim.api.nvim_chan_send(chan, "\x0c")
-        else
-          vim.notify("No terminal channel in REPL buffer", vim.log.levels.ERROR)
-        end
-
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
-        vim.cmd "wincmd h"
-      end, 30)
-    end
-
-    vim.keymap.set("n", "<leader>cl", function()
-      vim.cmd "wincmd l"
-      vim.cmd "startinsert"
-      clean()
-    end, { desc = "Clear REPL screen and return to code" })
-
     -- iron also has a list of commands, see :h iron-commands for all available commands
     vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
     vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
 
-    vim.keymap.set("t", "<C-x>", function()
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
-      vim.cmd "wincmd h"
-    end, { desc = "Exit terminal and focus left window" })
+    vim.keymap.set("n", "<space>cl", function()
+      local core = require "iron.core"
+      local ll = require "iron.lowlevel"
+
+      local ft = ll.get_buffer_ft(0)
+      if not ft then
+        return
+      end
+
+      local meta = ll.get(ft)
+
+      if ll.repl_exists(meta) then
+        vim.fn.chansend(meta.job, string.char(12))
+      else
+        core.send(nil, string.char(12))
+      end
+    end, { silent = true, desc = "Iron: Clear REPL screen (custom)" })
 
     vim.keymap.set("n", "<C-x>", function()
-      vim.cmd "wincmd l"
+      local core = require "iron.core"
+      local ll = require "iron.lowlevel"
+
+      local ft = ll.get_buffer_ft(0)
+      if not ft then
+        return
+      end
+
+      core.focus_on(ft)
       vim.cmd "startinsert"
-    end, { desc = "Focus right REPL and enter insert mode" })
+    end, { desc = "Iron: Focus REPL and enter insert mode" })
+
+    vim.keymap.set("t", "<C-x>", function()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
+      vim.cmd "wincmd p"
+    end, { desc = "Iron: Exit terminal and focus previous window" })
   end,
 }
