@@ -37,8 +37,13 @@ return {
             format = function(lines, extras)
               local result = common.bracketed_paste_python(lines, extras)
               local filtered = vim.tbl_filter(function(line)
-                return not string.match(line, "^%s*#") and line:match "%S"
+                return not string.match(line, "^%s*#")
               end, result)
+
+              if filtered[#filtered] and filtered[#filtered]:match "%S" then
+                table.insert(filtered, "")
+              end
+
               return filtered
             end,
             block_dividers = { "# %%", "#%%" },
@@ -78,7 +83,7 @@ return {
         cr = "<space>s<cr>",
         interrupt = "<space>s<space>",
         exit = "<space>sq",
-        clear = "<space>cl",
+        clear = nil,
       },
       -- If the highlight is on, you can change how it looks
       -- For the available options, check nvim_set_hl
@@ -88,8 +93,60 @@ return {
       ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
     }
 
+    -- Find active terminal buffer
+    local function find_repl_buf()
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].buftype == "terminal" and vim.api.nvim_buf_is_loaded(buf) then
+          return buf
+        end
+      end
+      return nil
+    end
+
+    local function clean()
+      local repl_buf = find_repl_buf()
+      if not repl_buf then
+        vim.notify("No active REPL terminal buffer found", vim.log.levels.WARN)
+        return
+      end
+
+      vim.api.nvim_buf_call(repl_buf, function()
+        vim.opt_local.laststatus = 0
+        vim.opt_local.winbar = nil
+        vim.bo.buflisted = false
+      end)
+
+      vim.defer_fn(function()
+        local chan = vim.b[repl_buf].terminal_job_id
+        if chan then
+          vim.api.nvim_chan_send(chan, "\x0c")
+        else
+          vim.notify("No terminal channel in REPL buffer", vim.log.levels.ERROR)
+        end
+
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
+        vim.cmd "wincmd h"
+      end, 30)
+    end
+
+    vim.keymap.set("n", "<leader>cl", function()
+      vim.cmd "wincmd l"
+      vim.cmd "startinsert"
+      clean()
+    end, { desc = "Clear REPL screen and return to code" })
+
     -- iron also has a list of commands, see :h iron-commands for all available commands
     vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
     vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
+
+    vim.keymap.set("t", "<C-x>", function()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
+      vim.cmd "wincmd h"
+    end, { desc = "Exit terminal and focus left window" })
+
+    vim.keymap.set("n", "<C-x>", function()
+      vim.cmd "wincmd l"
+      vim.cmd "startinsert"
+    end, { desc = "Focus right REPL and enter insert mode" })
   end,
 }
