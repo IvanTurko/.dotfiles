@@ -1,4 +1,4 @@
--- cd $HOME/.local/share/nvim/lazy/base46/lua/base46/themes
+-- cp $HOME/.dotfiles/nvim/lua/core/configs/monekai_pro.lua $HOME/.local/share/nvim/lazy/base46/lua/base46/themes
 
 local M = {}
 
