@@ -20,6 +20,7 @@ return {
           "bash",
           "python",
           "go",
+          "sql",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
