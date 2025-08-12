@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local lsp_list = { "lua_ls", "gopls", "pyright" }
+local lsp_list = { "lua_ls", "gopls", "pyright", "postgrestools" }
 
 config("*", {
   on_init = lspconfig.on_init,
@@ -52,6 +52,24 @@ config("pyright", {
     python = {
       analysis = {
         diagnosticMode = "workspace",
+      },
+    },
+  },
+})
+
+config("postgrestools", {
+  settings = {
+    postgres = {
+      -- Можешь сразу указать путь к psql, если не в PATH
+      executablePath = "psql",
+      -- Для простого синтаксиса можно не указывать connection
+      connection = {
+        -- Укажи, если хочешь, чтобы LSP читал схему
+        -- database = "mydb",
+        -- host = "localhost",
+        -- port = 5432,
+        -- user = "postgres",
+        -- password = "secret"
       },
     },
   },

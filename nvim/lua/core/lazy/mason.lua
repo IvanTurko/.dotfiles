@@ -1,26 +1,39 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-  opts = {
-    PATH = "skip",
-    ensure_installed = {
+  config = function()
+    require("mason").setup {
+      PATH = "prepend",
+      ui = {
+        icons = {
+          package_pending = " ",
+          package_installed = " ",
+          package_uninstalled = " ",
+        },
+      },
+      max_concurrent_installers = 10,
+    }
+
+    local mr = require "mason-registry"
+    local packages = {
       -- LSP
-      "lua_ls",
+      "lua-language-server",
       "gopls",
       "pyright",
+      "postgrestools",
       -- Formatters
       "stylua",
       "prettier",
+      "pgformatter",
       -- Linters
       "ruff",
-    },
-    ui = {
-      icons = {
-        package_pending = " ",
-        package_installed = " ",
-        package_uninstalled = " ",
-      },
-    },
-    max_concurrent_installers = 10,
-  },
+    }
+
+    for _, tool in ipairs(packages) do
+      if not mr.is_installed(tool) then
+        local p = mr.get_package(tool)
+        p:install()
+      end
+    end
+  end,
 }
