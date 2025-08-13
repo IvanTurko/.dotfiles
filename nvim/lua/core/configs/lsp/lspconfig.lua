@@ -19,8 +19,7 @@ M.on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts "List workspace folders")
   map("n", "<leader>dd", vim.lsp.buf.type_definition, opts "Go to type definition")
-  -- map("n", "<leader>ra", require "nvchad.lsp.renamer", opts "NvRenamer")
-  map("n", "<leader>ra", vim.lsp.buf.rename, opts "NvRenamer")
+  map("n", "<leader>ra", vim.lsp.buf.rename, opts "Renamer")
 
   -- global lsp mappings
   map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
@@ -58,22 +57,5 @@ M.capabilities.textDocument.completion.completionItem = {
     },
   },
 }
-
-M.diagnostic_config = function()
-  local x = vim.diagnostic.severity
-
-  vim.diagnostic.config {
-    -- update_in_insert = true,
-    signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  }
-end
 
 return M

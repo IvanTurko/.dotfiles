@@ -20,11 +20,10 @@ return {
       "lua-language-server",
       "gopls",
       "pyright",
-      "postgrestools",
       -- Formatters
       "stylua",
       "prettier",
-      "pgformatter",
+      "sqlfluff",
       -- Linters
       "ruff",
     }

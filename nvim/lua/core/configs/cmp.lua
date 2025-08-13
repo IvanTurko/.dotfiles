@@ -1,7 +1,6 @@
 local cmp = require "cmp"
 
 local options = {
-  -- completion = { completeopt = "menu,menuone" },
   completion = {
     scrollbar = false,
     side_padding = 1,
@@ -54,11 +53,20 @@ local options = {
   },
 
   sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "nvim_lua" },
-    { name = "path" },
+    { name = "nvim_lsp", priority = 1000, group_index = 1 },
+    { name = "luasnip", priority = 900, group_index = 1 },
+    { name = "nvim_lua", priority = 800, group_index = 1 },
+    { name = "path", priority = 700, group_index = 2 },
+    { name = "buffer", priority = 600, group_index = 2 },
   },
 }
+
+cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+  sources = {
+    { name = "vim-dadbod-completion", priority = 1000, group_index = 1 },
+    { name = "luasnip", priority = 800, group_index = 1 },
+    { name = "buffer", priority = 700, group_index = 2 },
+  },
+})
 
 return options
