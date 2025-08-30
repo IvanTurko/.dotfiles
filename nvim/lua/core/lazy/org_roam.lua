@@ -5,10 +5,14 @@ return {
       "nvim-orgmode/orgmode",
       ft = { "org" },
       config = function()
-        -- Setup orgmode
         require("orgmode").setup {
-          org_agenda_files = "~/Documents/org/todo/**/*",
-          org_default_notes_file = "~/Documents/org/todo/refile.org",
+          org_agenda_files = "~/Documents/org/tasks/**/*",
+          org_default_notes_file = "~/Documents/org/tasks/refile.org",
+          mappings = {
+            org = {
+              org_toggle_checkbox = "<Leader>cc",
+            },
+          },
         }
       end,
     },
