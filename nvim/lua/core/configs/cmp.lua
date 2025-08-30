@@ -69,4 +69,12 @@ cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
   },
 })
 
+cmp.setup.filetype({ "org" }, {
+  sources = {
+    { name = "orgmode", priority = 1000 },
+    { name = "buffer", priority = 800 },
+    { name = "path", priority = 700 },
+  },
+})
+
 return options
