@@ -5,9 +5,13 @@ return {
       "nvim-orgmode/orgmode",
       ft = { "org" },
       config = function()
+        vim.opt.conceallevel = 2
+        vim.opt.concealcursor = "nc"
+
         require("orgmode").setup {
           org_agenda_files = "~/Documents/org/tasks/**/*",
           org_default_notes_file = "~/Documents/org/tasks/refile.org",
+          org_hide_emphasis_markers = true,
           mappings = {
             org = {
               org_toggle_checkbox = "<Leader>cc",

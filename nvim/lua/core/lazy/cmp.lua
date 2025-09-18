@@ -23,9 +23,6 @@ return {
       },
     },
     opts = function()
-      pcall(function()
-        dofile(vim.g.base46_cache .. "cmp")
-      end)
       return require "core.configs.cmp"
     end,
   },

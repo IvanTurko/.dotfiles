@@ -4,9 +4,10 @@ local base46 = {
     StatusLine = { bg = "" },
   },
   hl_override = {},
-  integrations = {},
+  integrations = { "orgmode" },
   changed_themes = {},
   transparency = false,
+  theme_toggle = { "monekai_pro" }, -- two topics are needed
 }
 
 base46.hl_override = {

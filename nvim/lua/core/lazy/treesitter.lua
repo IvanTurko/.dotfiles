@@ -4,11 +4,6 @@ return {
     event = "User BufInitialized",
     build = ":TSUpdate",
     config = function()
-      pcall(function()
-        dofile(vim.g.base46_cache .. "syntax")
-        dofile(vim.g.base46_cache .. "treesitter")
-      end)
-
       require("nvim-treesitter.configs").setup {
         -- A list of parser names, or "all"
         ensure_installed = {

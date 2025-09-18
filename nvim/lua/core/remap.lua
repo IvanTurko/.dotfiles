@@ -53,12 +53,14 @@ map("n", "<leader>j", "<cmd>lprev<CR>zz")
 map("n", "<leader>th", function()
   require("plenary.reload").reload_module "base46"
   require("base46").load_all_highlights()
+  vim.notify "Reload My Theme"
 end, { desc = "reload theme" })
 
 map("n", "<leader>tn", function()
   require("base46").toggle_theme()
   require("plenary.reload").reload_module "base46"
   require("base46").load_all_highlights()
+  vim.notify "Toogle My Theme"
 end, { desc = "toggle theme" })
 
 map("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
