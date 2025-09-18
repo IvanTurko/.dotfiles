@@ -75,14 +75,14 @@ M.polish_hl = {
 
   orgmode = {
     -- Headlines
-    ["@org.headline.level1.org"] = { fg = M.base_30.purple },
-    ["@org.headline.level2.org"] = { fg = M.base_30.blue },
-    ["@org.headline.level3.org"] = { fg = M.base_30.cyan },
-    ["@org.headline.level4.org"] = { fg = M.base_30.green },
-    ["@org.headline.level5.org"] = { fg = M.base_30.yellow },
-    ["@org.headline.level6.org"] = { fg = M.base_30.orange },
-    ["@org.headline.level7.org"] = { fg = M.base_30.sun },
-    ["@org.headline.level8.org"] = { fg = M.base_30.pink },
+    ["@org.headline.level1.org"] = { fg = M.base_30.dark_purple },
+    ["@org.headline.level2.org"] = { fg = M.base_30.nord_blue },
+    ["@org.headline.level3.org"] = { fg = M.base_30.vibrant_green },
+    ["@org.headline.level4.org"] = { fg = M.base_30.orange },
+    ["@org.headline.level5.org"] = { fg = M.base_30.sun },
+    ["@org.headline.level6.org"] = { fg = M.base_30.baby_pink },
+    ["@org.headline.level7.org"] = { fg = M.base_30.grey_fg },
+    ["@org.headline.level8.org"] = { fg = M.base_30.light_grey },
 
     -- Priorities
     ["@org.priority.highest"] = { fg = M.base_30.red, bold = true },
