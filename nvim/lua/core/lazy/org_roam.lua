@@ -24,6 +24,13 @@ return {
   config = function()
     require("org-roam").setup {
       directory = "~/Documents/org/notes",
+      templates = {
+        d = {
+          description = "default",
+          template = "#+DATE: %U\n#+AUTHOR: Ivan Turko\n\n%?",
+          target = "%<%Y%m%d%H%M%S>-%[slug].org",
+        },
+      },
     }
   end,
 }
