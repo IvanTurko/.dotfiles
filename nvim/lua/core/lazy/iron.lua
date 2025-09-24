@@ -83,7 +83,7 @@ return {
         cr = "<space>s<cr>",
         interrupt = "<space>s<space>",
         exit = "<space>sq",
-        clear = nil,
+        clear = "<space>cl",
       },
       -- If the highlight is on, you can change how it looks
       -- For the available options, check nvim_set_hl
@@ -96,24 +96,6 @@ return {
     -- iron also has a list of commands, see :h iron-commands for all available commands
     vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
     vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
-
-    vim.keymap.set("n", "<space>cl", function()
-      local core = require "iron.core"
-      local ll = require "iron.lowlevel"
-
-      local ft = ll.get_buffer_ft(0)
-      if not ft then
-        return
-      end
-
-      local meta = ll.get(ft)
-
-      if ll.repl_exists(meta) then
-        vim.fn.chansend(meta.job, string.char(12))
-      else
-        core.send(nil, string.char(12))
-      end
-    end, { silent = true, desc = "Iron: Clear REPL screen (custom)" })
 
     vim.keymap.set("n", "<C-x>", function()
       local core = require "iron.core"

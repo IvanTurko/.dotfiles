@@ -16,6 +16,7 @@ return {
           "python",
           "go",
           "sql",
+          "http",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
