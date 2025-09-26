@@ -5,8 +5,13 @@ return {
       "nvim-orgmode/orgmode",
       ft = { "org" },
       config = function()
-        vim.opt.conceallevel = 2
-        vim.opt.concealcursor = "nc"
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "org",
+          callback = function()
+            vim.opt_local.conceallevel = 2
+            vim.opt_local.concealcursor = "nc"
+          end,
+        })
 
         require("orgmode").setup {
           org_agenda_files = "~/Documents/org/tasks/**/*",
