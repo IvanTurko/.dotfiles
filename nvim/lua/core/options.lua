@@ -1,7 +1,9 @@
 local opt = vim.opt
 local g = vim.g
+local o = vim.o
 
 g.mapleader = " "
+o.mouse = ""
 
 -- UI
 opt.termguicolors = true
