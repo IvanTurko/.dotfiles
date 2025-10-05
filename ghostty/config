@@ -5,3 +5,5 @@ theme = Monokai Pro Machine
 window-padding-x = 8
 window-padding-y = 6
 window-padding-balance = true
+
+macos-option-as-alt = true
