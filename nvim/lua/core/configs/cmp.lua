@@ -56,8 +56,8 @@ local options = {
     { name = "nvim_lsp", priority = 1000, group_index = 1 },
     { name = "luasnip", priority = 900, group_index = 1 },
     { name = "nvim_lua", priority = 800, group_index = 1 },
-    { name = "path", priority = 700, group_index = 2 },
-    { name = "buffer", priority = 600, group_index = 2 },
+    { name = "path", priority = 700, group_index = 1 },
+    { name = "buffer", group_index = 2 },
   },
 }
 
