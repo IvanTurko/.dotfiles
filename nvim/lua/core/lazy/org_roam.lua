@@ -14,7 +14,10 @@ return {
         })
 
         require("orgmode").setup {
-          org_agenda_files = "~/Documents/org/tasks/**/*",
+          org_agenda_files = {
+            "~/Documents/org/tasks/**/*",
+            "~/Documents/projects/**/*",
+          },
           org_default_notes_file = "~/Documents/org/tasks/refile.org",
           org_hide_emphasis_markers = true,
           mappings = {
