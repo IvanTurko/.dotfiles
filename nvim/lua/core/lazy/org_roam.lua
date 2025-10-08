@@ -19,6 +19,16 @@ return {
             "~/Documents/projects/**/*",
           },
           org_default_notes_file = "~/Documents/org/tasks/refile.org",
+          org_todo_keywords = {
+            "TODO(t)",
+            "NEXT(n)",
+            "IN-PROGRESS(p)",
+            "HABIT(h)",
+            "WAITING(w)",
+            "|",
+            "DONE(d)",
+            "CANCELLED(c)",
+          },
           org_hide_emphasis_markers = true,
           mappings = {
             org = {
