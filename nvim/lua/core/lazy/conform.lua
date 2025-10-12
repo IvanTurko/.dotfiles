@@ -7,7 +7,7 @@ return {
       function()
         require("conform").format {
           lsp_fallback = true,
-          timeout_ms = 500,
+          timeout_ms = 1000,
         }
       end,
       mode = { "n", "x" },

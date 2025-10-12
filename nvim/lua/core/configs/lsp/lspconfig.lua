@@ -7,8 +7,11 @@ M.on_attach = function(_, bufnr)
 
   local map = vim.keymap.set
 
-  map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
   map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
+  map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
+  map("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
+  map({ "n", "v" }, "<Leader>la", vim.lsp.buf.code_action, opts "Code action")
+
   map("n", "K", function()
     vim.lsp.buf.hover { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } }
   end, opts "Hover docs")
@@ -18,17 +21,13 @@ M.on_attach = function(_, bufnr)
   map("n", "<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts "List workspace folders")
-  map("n", "<leader>dd", vim.lsp.buf.type_definition, opts "Go to type definition")
   map("n", "<leader>ra", vim.lsp.buf.rename, opts "Renamer")
 
-  -- global lsp mappings
-  map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+  -- global lsp mappngs
+  map("n", "<leader>ls", vim.diagnostic.setloclist, opts "diagnostic loclist")
   vim.keymap.set("n", "<leader>vd", function()
     vim.diagnostic.open_float()
-  end, opts "j")
-
-  map("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
-  map({ "n", "v" }, "<Leader>la", vim.lsp.buf.code_action, opts "Code action")
+  end, opts "diagnostic open float window")
 end
 
 -- disable semanticTokens
