@@ -1,6 +1,14 @@
 local cmp = require "cmp"
 
 local options = {
+  enabled = function()
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+    if buftype == "nofile" then
+      return false
+    end
+    return true
+  end,
+
   completion = {
     scrollbar = false,
     side_padding = 1,
