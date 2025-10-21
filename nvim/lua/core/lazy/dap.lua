@@ -2,10 +2,12 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     "rcarriga/nvim-dap-ui",
+    "williamboman/mason.nvim",
+    "theHamsta/nvim-dap-virtual-text",
     "nvim-neotest/nvim-nio",
     "jay-babu/mason-nvim-dap.nvim",
     "leoluz/nvim-dap-go",
-    "williamboman/mason.nvim",
+    "mfussenegger/nvim-dap-python",
   },
 
   keys = {
@@ -66,7 +68,7 @@ return {
 
     require("mason-nvim-dap").setup {
       automatic_installation = true,
-      ensure_installed = { "delve" },
+      ensure_installed = { "delve", "python" },
     }
 
     local function layout(name)
@@ -157,6 +159,8 @@ return {
     dap.listeners.before.event_terminated["dapui_config"] = dapui.close
     dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
+    require("nvim-dap-virtual-text").setup { commented = true }
     require("dap-go").setup {}
+    require("dap-python").setup "uv"
   end,
 }
