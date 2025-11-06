@@ -7,8 +7,8 @@ return {
   },
 
   {
-    "selimacerbas/mermaid-playground.nvim",
-    ft = { "markdown" },
+    "IvanTurko/org-mermaid-playground.nvim",
+    ft = { "org" },
     dependencies = { "barrett-ruth/live-server.nvim" },
     config = function()
       require("mermaid_playground").setup {
