@@ -1,44 +1,69 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "User BufInitialized",
+    lazy = false,
+    branch = "main",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup {
-        -- A list of parser names, or "all"
-        ensure_installed = {
-          "lua",
-          "luadoc",
-          "printf",
-          "vim",
-          "vimdoc",
-          "bash",
-          "python",
-          "go",
-          "sql",
-          "http",
-          "yaml",
-          "json",
-        },
+      local ts = require "nvim-treesitter"
 
-        -- Install parsers synchronously (only applied to `ensure_installed`)
-        sync_install = false,
+      ts.setup {}
 
-        -- Automatically install missing parsers when entering buffer
-        -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
-        auto_install = true,
-        ignore_install = {
-          "mermaid",
-        },
-
-        indent = {
-          enable = true,
-        },
-
-        highlight = {
-          enable = true,
-        },
+      local default_parsers_to_install = {
+        "lua",
+        "luadoc",
+        "printf",
+        "vim",
+        "vimdoc",
+        "bash",
+        "python",
+        "go",
+        "sql",
+        "http",
+        "yaml",
+        "json",
       }
+
+      ts.install(default_parsers_to_install):wait(180000)
+
+      local function is_parser_installed(filetype)
+        local installed = ts.get_installed()
+        for _, name in ipairs(installed) do
+          if name == filetype then
+            return true
+          end
+        end
+        return false
+      end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
+        callback = function(args)
+          local bufnr = args.buf
+          local filetype = vim.bo[bufnr].filetype
+
+          if is_parser_installed(filetype) then
+            vim.treesitter.start(bufnr)
+            vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          elseif filetype ~= "" and filetype ~= "text" then
+            ts.install { filetype }
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSInstall",
+        callback = function()
+          local bufnr = vim.api.nvim_get_current_buf()
+          local filetype = vim.bo[bufnr].filetype
+
+          if is_parser_installed(filetype) and filetype ~= "" and filetype ~= "text" then
+            vim.api.nvim_buf_call(bufnr, function()
+              vim.cmd("doautocmd FileType " .. filetype)
+            end)
+          end
+        end,
+      })
     end,
   },
 
