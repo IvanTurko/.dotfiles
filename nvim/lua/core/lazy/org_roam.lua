@@ -1,17 +1,14 @@
 return {
   "chipsenkbeil/org-roam.nvim",
-  ft = { "org" },
+  event = "VeryLazy",
   dependencies = {
     {
       "nvim-orgmode/orgmode",
       ft = { "org" },
       config = function()
-        vim.api.nvim_create_autocmd("BufWinEnter", {
+        vim.api.nvim_create_autocmd("FileType", {
           pattern = "org",
           callback = function()
-            vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-            vim.opt_local.foldmethod = "expr"
-
             vim.opt_local.conceallevel = 2
             vim.opt_local.concealcursor = "nc"
           end,

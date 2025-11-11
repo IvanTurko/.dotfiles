@@ -1,11 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     branch = "main",
     build = ":TSUpdate",
     config = function()
       local ts = require "nvim-treesitter"
+
+      local ignored_parsers = {
+        "org",
+        "mermaid",
+      }
 
       ts.setup {}
 
@@ -36,11 +40,24 @@ return {
         return false
       end
 
+      local function is_parser_ignored(filetype)
+        for _, name in ipairs(ignored_parsers) do
+          if name == filetype then
+            return true
+          end
+        end
+        return false
+      end
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "*",
         callback = function(args)
           local bufnr = args.buf
           local filetype = vim.bo[bufnr].filetype
+
+          if is_parser_ignored(filetype) then
+            return
+          end
 
           if is_parser_installed(filetype) then
             vim.treesitter.start(bufnr)
@@ -56,6 +73,10 @@ return {
         callback = function()
           local bufnr = vim.api.nvim_get_current_buf()
           local filetype = vim.bo[bufnr].filetype
+
+          if is_parser_ignored(filetype) then
+            return
+          end
 
           if is_parser_installed(filetype) and filetype ~= "" and filetype ~= "text" then
             vim.api.nvim_buf_call(bufnr, function()
