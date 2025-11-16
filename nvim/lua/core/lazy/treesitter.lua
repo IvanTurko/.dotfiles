@@ -49,6 +49,35 @@ return {
         return false
       end
 
+      local function activate_treesitter_in_buffers(target_filetype)
+        vim.defer_fn(function()
+          local installed_parsers = ts.get_installed()
+          local installed_map = {}
+          for _, name in ipairs(installed_parsers) do
+            installed_map[name] = true
+          end
+
+          for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+            if not vim.api.nvim_buf_is_valid(bufnr) then
+              goto continue
+            end
+
+            if not vim.api.nvim_buf_is_loaded(bufnr) then
+              goto continue
+            end
+
+            local filetype = vim.bo[bufnr].filetype
+
+            if filetype == target_filetype and installed_map[filetype] and not is_parser_ignored(filetype) then
+              vim.api.nvim_buf_call(bufnr, function()
+                vim.cmd("doautocmd FileType " .. filetype)
+              end)
+            end
+            ::continue::
+          end
+        end, 50)
+      end
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "*",
         callback = function(args)
@@ -63,24 +92,9 @@ return {
             vim.treesitter.start(bufnr)
             vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           elseif filetype ~= "" and filetype ~= "text" then
-            ts.install { filetype }
-          end
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "TSInstall",
-        callback = function()
-          local bufnr = vim.api.nvim_get_current_buf()
-          local filetype = vim.bo[bufnr].filetype
-
-          if is_parser_ignored(filetype) then
-            return
-          end
-
-          if is_parser_installed(filetype) and filetype ~= "" and filetype ~= "text" then
-            vim.api.nvim_buf_call(bufnr, function()
-              vim.cmd("doautocmd FileType " .. filetype)
+            vim.schedule(function()
+              ts.install({ filetype }):wait(30000)
+              activate_treesitter_in_buffers(filetype)
             end)
           end
         end,
