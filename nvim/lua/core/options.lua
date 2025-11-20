@@ -68,14 +68,3 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. ":" .. vim.env.PATH
 
 -- Base46 cache
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
-
-vim.api.nvim_create_augroup("EnsureNumberSettings", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
-  group = "EnsureNumberSettings",
-  callback = function()
-    if vim.bo.buftype == "" and vim.bo.modifiable then
-      vim.wo.number = true
-      vim.wo.relativenumber = true
-    end
-  end,
-})
