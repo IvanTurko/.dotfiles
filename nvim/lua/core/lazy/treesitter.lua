@@ -13,6 +13,11 @@ return {
 
       ts.setup {}
 
+      -- WARNING: Treesitter compilation is RAM-heavy!
+      -- If Neovim freezes/crashes during installation (especially on 'gitcommit'):
+      -- 1. Check Swap space (must be > 4GB total memory): `free -h`
+      -- 2. If low RAM, install manually without optimization using this command in terminal:
+      --    CC="gcc -O0" nvim then after ":TSInstall gitcommit"
       local default_parsers_to_install = {
         "lua",
         "luadoc",
@@ -26,6 +31,7 @@ return {
         "http",
         "yaml",
         "json",
+        "gitcommit", -- Heavy to compile! See warning above.
       }
 
       ts.install(default_parsers_to_install):wait(180000)
