@@ -1,7 +1,7 @@
 return {
   "Vigemus/iron.nvim",
   keys = {
-    { "<space>rr", desc = "Toggle REPL" },
+    { "<Leader>rr", desc = "Toggle REPL" },
   },
   config = function()
     local iron = require "iron.core"
@@ -65,28 +65,28 @@ return {
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
         keymaps = {
-          toggle_repl = "<space>rr", -- toggles the repl open and closed.
+          toggle_repl = "<Leader>rr", -- toggles the repl open and closed.
           -- If repl_open_command is a table as above, then the following keymaps are
           -- available
-          -- toggle_repl_with_cmd_1 = "<space>rv",
-          -- toggle_repl_with_cmd_2 = "<space>rh",
-          restart_repl = "<space>rR", -- calls `IronRestart` to restart the repl
-          send_motion = "<space>sc",
-          visual_send = "<space>sc",
-          send_file = "<space>sf",
-          send_line = "<space>sl",
-          send_paragraph = "<space>sp",
-          send_until_cursor = "<space>su",
-          send_mark = "<space>sm",
-          send_code_block = "<space>sb",
-          send_code_block_and_move = "<space>sn",
-          mark_motion = "<space>mc",
-          mark_visual = "<space>mc",
-          remove_mark = "<space>md",
-          cr = "<space>s<cr>",
-          interrupt = "<space>s<space>",
-          exit = "<space>sq",
-          clear = "<space>cl",
+          -- toggle_repl_with_cmd_1 = "<Leader>rv",
+          -- toggle_repl_with_cmd_2 = "<Leader>rh",
+          restart_repl = "<Leader>rR", -- calls `IronRestart` to restart the repl
+          send_motion = "<Leader>sc",
+          visual_send = "<Leader>sc",
+          send_file = "<Leader>sf",
+          send_line = "<Leader>sl",
+          send_paragraph = "<Leader>sp",
+          send_until_cursor = "<Leader>su",
+          send_mark = "<Leader>sm",
+          send_code_block = "<Leader>sb",
+          send_code_block_and_move = "<Leader>sn",
+          mark_motion = "<Leader>mc",
+          mark_visual = "<Leader>mc",
+          remove_mark = "<Leader>md",
+          cr = "<Leader>s<cr>",
+          interrupt = "<Leader>s<Leader>",
+          exit = "<Leader>sq",
+          clear = "<Leader>cl",
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
@@ -97,8 +97,8 @@ return {
       }
 
       -- iron also has a list of commands, see :h iron-commands for all available commands
-      vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
-      vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
+      vim.keymap.set("n", "<Leader>rf", "<cmd>IronFocus<cr>")
+      vim.keymap.set("n", "<Leader>rh", "<cmd>IronHide<cr>")
 
       vim.keymap.set("n", "<C-x>", function()
         local core = require "iron.core"

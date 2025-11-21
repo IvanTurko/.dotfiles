@@ -5,7 +5,6 @@ return {
     ft = { "html", "javascript", "markdown" },
     config = true,
   },
-
   {
     "IvanTurko/org-mermaid-playground.nvim",
     ft = { "org" },

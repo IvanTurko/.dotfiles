@@ -1,38 +1,64 @@
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
+  keys = {
+    {
+      "<leader>a",
+      function()
+        require("harpoon"):list():add()
+      end,
+      desc = "Harpoon: Add file",
+    },
+    {
+      "<C-e>",
+      function()
+        require("harpoon.ui"):toggle_quick_menu(require("harpoon"):list())
+      end,
+      desc = "Harpoon: Toggle Quick Menu",
+    },
+    {
+      "<C-h>",
+      function()
+        require("harpoon"):list():select(1)
+      end,
+      desc = "Harpoon: Select 1",
+    },
+    {
+      "<C-t>",
+      function()
+        require("harpoon"):list():select(2)
+      end,
+      desc = "Harpoon: Select 2",
+    },
+    {
+      "<C-n>",
+      function()
+        require("harpoon"):list():select(3)
+      end,
+      desc = "Harpoon: Select 3",
+    },
+    {
+      "<C-s>",
+      function()
+        require("harpoon"):list():select(4)
+      end,
+      desc = "Harpoon: Select 4",
+    },
+    {
+      "<C-S-P>",
+      function()
+        require("harpoon"):list():prev()
+      end,
+      desc = "Harpoon: Previous",
+    },
+    {
+      "<C-S-N>",
+      function()
+        require("harpoon"):list():next()
+      end,
+      desc = "Harpoon: Next",
+    },
+  },
   dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    local harpoon = require "harpoon"
-
-    harpoon:setup()
-
-    vim.keymap.set("n", "<leader>a", function()
-      harpoon:list():add()
-    end)
-    vim.keymap.set("n", "<C-e>", function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
-    end)
-
-    vim.keymap.set("n", "<C-h>", function()
-      harpoon:list():select(1)
-    end)
-    vim.keymap.set("n", "<C-t>", function()
-      harpoon:list():select(2)
-    end)
-    vim.keymap.set("n", "<C-n>", function()
-      harpoon:list():select(3)
-    end)
-    vim.keymap.set("n", "<C-s>", function()
-      harpoon:list():select(4)
-    end)
-
-    -- Toggle previous & next buffers stored within Harpoon list
-    vim.keymap.set("n", "<C-S-P>", function()
-      harpoon:list():prev()
-    end)
-    vim.keymap.set("n", "<C-S-N>", function()
-      harpoon:list():next()
-    end)
-  end,
+  opts = {},
 }

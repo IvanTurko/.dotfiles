@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "User BufInitialized",
     branch = "main",
     build = ":TSUpdate",
     config = function()

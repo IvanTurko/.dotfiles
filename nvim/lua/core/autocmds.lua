@@ -31,6 +31,17 @@ autocmd("TextYankPost", {
   end,
 })
 
+local org_ft_group = augroup("OrgFileTypeSettings", { clear = true })
+
+autocmd("FileType", {
+  group = org_ft_group,
+  pattern = "org",
+  callback = function()
+    vim.opt_local.conceallevel = 2
+    vim.opt_local.concealcursor = "nc"
+  end,
+})
+
 local BufInitOnce = vim.api.nvim_create_augroup("BufInitOnce", { clear = true })
 
 autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
