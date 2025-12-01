@@ -66,7 +66,7 @@ return {
 
       require("mason-nvim-dap").setup {
         automatic_installation = true,
-        ensure_installed = { "delve", "python" },
+        ensure_installed = { "delve", "python", "codelldb" },
       }
 
       local function layout(name)
@@ -158,6 +158,30 @@ return {
       dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
       require("nvim-dap-virtual-text").setup { commented = true }
+
+      do
+        dap.adapters.codelldb = {
+          type = "executable",
+          command = "codelldb",
+        }
+
+        -- https://github.com/Civitasv/cmake-tools.nvim?tab=readme-ov-file
+        local cpp_config = {
+          {
+            name = "Launch",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+            stopOnEntry = false,
+          },
+        }
+
+        dap.configurations.c = cpp_config
+        dap.configurations.cpp = cpp_config
+      end
     end,
   },
   {

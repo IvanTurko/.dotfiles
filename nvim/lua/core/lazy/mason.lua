@@ -1,6 +1,6 @@
 return {
   "mason-org/mason.nvim",
-  cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+  event = "VeryLazy",
   config = function()
     require("mason").setup {
       PATH = "prepend",
@@ -20,6 +20,7 @@ return {
       "lua-language-server",
       "gopls",
       "pyright",
+      "clangd",
       -- Formatters
       "stylua",
       "prettier",

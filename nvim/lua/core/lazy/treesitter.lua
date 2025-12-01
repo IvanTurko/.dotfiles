@@ -28,6 +28,8 @@ return {
         "bash",
         "python",
         "go",
+        "c",
+        "cpp",
         "sql",
         "http",
         "yaml",
