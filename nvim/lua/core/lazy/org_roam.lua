@@ -80,7 +80,10 @@ return {
   },
   tag = "0.2.0",
   opts = {
-    directory = "~/Documents/org/notes",
+    directory = "~/Documents/org/inbox",
+    org_files = {
+      "~/Documents/org",
+    },
     templates = {
       d = {
         description = "default",
