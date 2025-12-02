@@ -1,13 +1,10 @@
 return {
   "chipsenkbeil/org-roam.nvim",
-  keys = {
-    { "<Leader>nf", desc = "Finds node and moves to it, creating it if it does not exist." },
-    { "<Leader>nc", desc = "Opens org-roam capture window." },
-  },
+  event = "VeryLazy",
   dependencies = {
     {
       "nvim-orgmode/orgmode",
-      event = "VeryLazy",
+      tag = "0.7.0",
       opts = {
         org_agenda_files = {
           "~/Documents/org/tasks/**/*",
@@ -81,6 +78,7 @@ return {
       },
     },
   },
+  tag = "0.2.0",
   opts = {
     directory = "~/Documents/org/notes",
     templates = {
