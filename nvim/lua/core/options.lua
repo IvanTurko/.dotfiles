@@ -42,6 +42,8 @@ opt.isfname:append "@-@"
 -- Search
 opt.hlsearch = false
 opt.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
 
 -- Files & Undo
 opt.swapfile = false
@@ -53,9 +55,9 @@ opt.undofile = true
 opt.updatetime = 50
 
 -- Netrw
-g.netrw_browse_split = 0
-g.netrw_banner = 0
-g.netrw_winsize = 25
+-- g.netrw_browse_split = 0
+-- g.netrw_banner = 0
+-- g.netrw_winsize = 25
 
 -- Providers
 g.loaded_node_provider = 0

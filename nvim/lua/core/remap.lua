@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
-map("n", "<leader>e", vim.cmd.Ex)
+map("n", "<leader>e", "<cmd>Oil<CR>")
+-- map("n", "<leader>e", vim.cmd.Ex)
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>", { desc = "Exit from Insert Mode" })
 

@@ -9,14 +9,14 @@ autocmd("BufWritePre", {
   command = [[%s/\s\+$//e]],
 })
 
-autocmd("FileType", {
-  group = ThePrimeagenGroup,
-  pattern = "netrw",
-  callback = function()
-    -- Link netrw directory classifications to Directory highlight
-    vim.api.nvim_set_hl(0, "netrwClassify", { link = "Directory" })
-  end,
-})
+-- autocmd("FileType", {
+--   group = ThePrimeagenGroup,
+--   pattern = "netrw",
+--   callback = function()
+--     -- Link netrw directory classifications to Directory highlight
+--     vim.api.nvim_set_hl(0, "netrwClassify", { link = "Directory" })
+--   end,
+-- })
 
 local yank_group = augroup("HighlightYank", { clear = true })
 
