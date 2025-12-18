@@ -15,6 +15,7 @@ return {
         },
       },
     },
+    extensions = { themes = {} },
   },
   keys = {
     { "<leader>pf", desc = "Find files" },
@@ -23,9 +24,12 @@ return {
     { "<leader>pws", desc = "Grep word under cursor" },
     { "<leader>pWs", desc = "Grep WORD under cursor" },
     { "<leader>vh", desc = "Help tags" },
+    { "<leader>th", desc = "Set theme" },
   },
   config = function(_, opts)
-    require("telescope").setup(opts)
+    local tp = require "telescope"
+    tp.setup(opts)
+    tp.load_extension "themes"
 
     local builtin = require "telescope.builtin"
     local map = vim.keymap.set
@@ -46,6 +50,10 @@ return {
     map("n", "<leader>pWs", function()
       builtin.grep_string { search = vim.fn.expand "<cWORD>" }
     end, { desc = "Grep WORD under cursor" })
+
+    map("n", "<leader>th", function()
+      tp.extensions.themes.themes()
+    end, { desc = "Set theme" })
 
     map("n", "<leader>vh", builtin.help_tags, { desc = "Help tags" })
   end,
