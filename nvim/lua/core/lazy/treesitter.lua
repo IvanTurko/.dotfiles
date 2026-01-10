@@ -8,7 +8,6 @@ return {
       local ts = require "nvim-treesitter"
 
       local ignored_parsers = {
-        "org",
         "mermaid",
       }
 
@@ -38,6 +37,15 @@ return {
       }
 
       ts.install(default_parsers_to_install):wait(180000)
+
+      local available_parsers = {}
+      for _, lang in ipairs(ts.get_available()) do
+        available_parsers[lang] = true
+      end
+
+      local function is_parser_available(filetype)
+        return available_parsers[filetype] == true
+      end
 
       local function is_parser_installed(filetype)
         local installed = ts.get_installed()
@@ -100,7 +108,7 @@ return {
           if is_parser_installed(filetype) then
             vim.treesitter.start(bufnr)
             vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          elseif filetype ~= "" and filetype ~= "text" then
+          elseif filetype ~= "" and filetype ~= "text" and is_parser_available(filetype) then
             vim.schedule(function()
               ts.install({ filetype }):wait(30000)
               activate_treesitter_in_buffers(filetype)
