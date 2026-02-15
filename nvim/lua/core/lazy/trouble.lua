@@ -1,6 +1,5 @@
 return {
   "folke/trouble.nvim",
-  event = "User BufInitialized",
   opts = {
     focus = true,
     keys = {

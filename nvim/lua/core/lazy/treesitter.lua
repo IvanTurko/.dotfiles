@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "User BufInitialized",
+    event = { "BufReadPost", "BufNewFile" },
     branch = "main",
     build = ":TSUpdate",
     config = function()
@@ -121,7 +121,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "User BufInitialized",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("treesitter-context").setup {
         enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
