@@ -1,6 +1,11 @@
 return {
   "IvanTurko/markup-preview.nvim",
   dependencies = { "selimacerbas/live-server.nvim" },
+  cmd = {
+    "MarkupPreviewStart",
+    "MarkupPreviewStop",
+    "MarkupPreviewToggle",
+  },
   config = function()
     require("markup_preview").setup {
       -- all optional; sane defaults shown

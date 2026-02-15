@@ -16,7 +16,7 @@
   "kulala.nvim": { "branch": "main", "commit": "6656c9d332735ca6a27725e0fb45a1715c4372d9" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "live-server.nvim": { "branch": "main", "commit": "d6a253569ebb813c622f56971f55f56d044f6ab5" },
-  "markup-preview.nvim": { "branch": "main", "commit": "6412e12433871b12e5b7ff24b0ec61a90fe16cab" },
+  "markup-preview.nvim": { "branch": "main", "commit": "463331ee5347e8828247def4096af01a94bc9be0" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "9a10e096703966335bd5c46c8c875d5b0690dade" },
   "mason.nvim": { "branch": "main", "commit": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65" },
   "neotest": { "branch": "master", "commit": "deadfb1af5ce458742671ad3a013acb9a6b41178" },
