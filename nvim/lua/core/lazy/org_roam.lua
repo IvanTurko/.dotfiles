@@ -4,7 +4,6 @@ return {
   dependencies = {
     {
       "nvim-orgmode/orgmode",
-      tag = "0.7.0",
       opts = {
         org_agenda_files = {
           "~/Documents/org/tasks/**/*",
