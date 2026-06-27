@@ -28,6 +28,7 @@ return {
         "go",
         "c",
         "cpp",
+        "rust",
         "sql",
         "http",
         "yaml",

@@ -41,4 +41,3 @@ autocmd("FileType", {
     vim.opt_local.concealcursor = "nc"
   end,
 })
-

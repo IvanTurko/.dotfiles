@@ -7,6 +7,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "fredrikaverpil/neotest-golang",
     "leoluz/nvim-dap-go",
+    "mrcjkb/rustaceanvim",
   },
   keys = {
     {
@@ -66,6 +67,7 @@ return {
     require("neotest").setup {
       adapters = {
         require "neotest-golang"(neotest_golang_opts),
+        require "rustaceanvim.neotest",
       },
     }
   end,
