@@ -1,6 +1,6 @@
 return {
   "mrcjkb/rustaceanvim",
-  version = "^6",
+  version = "^9",
   lazy = false,
   init = function()
     local lsp = require "core.configs.lsp.lspconfig"
@@ -11,7 +11,10 @@ return {
         capabilities = lsp.capabilities,
         default_settings = {
           ["rust-analyzer"] = {
-            checkOnSave = { command = "clippy" },
+            checkOnSave = true,
+            check = {
+              command = "clippy",
+            },
           },
         },
       },
