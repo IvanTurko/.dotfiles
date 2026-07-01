@@ -33,6 +33,9 @@ return {
         "http",
         "yaml",
         "json",
+        "markdown",
+        "markdown_inline",
+        "latex",
         "gitcommit", -- Heavy to compile! See warning above.
       }
 

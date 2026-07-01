@@ -1,5 +1,6 @@
 return {
   "mistweaverco/kulala.nvim",
+  event = { "SessionLoadPost", "VimLeavePre" },
   keys = {
     { "<leader>hs", desc = "Send request" },
     { "<leader>ha", desc = "Send all requests" },

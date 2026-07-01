@@ -60,6 +60,12 @@ M.polish_hl = {
     ["@boolean"] = { fg = M.base_16.base09 },
     ["@punctuation.bracket"] = { fg = M.base_30.sun },
     ["@operator"] = { fg = M.base_30.red },
+    ["@markup.heading.1.markdown"] = { fg = M.base_30.dark_purple, bold = true },
+    ["@markup.heading.2.markdown"] = { fg = M.base_30.nord_blue, bold = true },
+    ["@markup.heading.3.markdown"] = { fg = M.base_30.vibrant_green, bold = true },
+    ["@markup.heading.4.markdown"] = { fg = M.base_30.orange, bold = true },
+    ["@markup.heading.5.markdown"] = { fg = M.base_30.sun, bold = true },
+    ["@markup.heading.6.markdown"] = { fg = M.base_30.baby_pink, bold = true },
   },
 
   syntax = {
@@ -71,6 +77,12 @@ M.polish_hl = {
       bg = M.base_30.black,
       fg = "#6b7678",
     },
+    RenderMarkdownH1 = { fg = M.base_30.dark_purple },
+    RenderMarkdownH2 = { fg = M.base_30.nord_blue },
+    RenderMarkdownH3 = { fg = M.base_30.vibrant_green },
+    RenderMarkdownH4 = { fg = M.base_30.orange },
+    RenderMarkdownH5 = { fg = M.base_30.sun },
+    RenderMarkdownH6 = { fg = M.base_30.baby_pink },
   },
 
   orgmode = {
