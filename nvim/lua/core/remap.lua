@@ -28,9 +28,6 @@ map("x", "<leader>s", function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(":%s/" .. selection .. "/", true, false, true), "n", false)
 end, { desc = "Substitute visual selection (prompt for replacement)" })
 
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-
 -- next greatest remap ever : asbjornHaland
 map({ "n", "v" }, "<leader>y", [["+y]])
 map("n", "<leader>Y", [["+Y]])
